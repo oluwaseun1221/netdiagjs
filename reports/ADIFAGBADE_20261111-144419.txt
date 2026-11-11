@@ -1,0 +1,151 @@
+netdiag 1.0.0 report
+========================================================================
+Generated : Wed Nov 11 2026 14:44:19 GMT+0100 (West Africa Time)
+Computer  : ADIFAGBADE (user tomiw)
+System    : Windows_NT 10.0.26300 (x64) / Node v24.22.1
+Config    : built-in defaults
+Target    : example.com:443
+
+RESULT    : No network address (DHCP failure)  [FAIL]
+Meaning   : This computer is connected but the network never gave it an address, so it cannot talk to anything.
+Action    : Reconnect the network cable or Wi-Fi, wait a minute and run this check again. If it still fails, send the report to IT and mention a 169.254 address.
+Technical : Local IP address: Only a self-assigned address (169.254.94.101) - DHCP failed; Default gateway: No default gateway configured - this PC has no route to other networks
+
+CHECKS
+------------------------------------------------------------------------
+[INFO] System: ADIFAGBADE - Windows_NT 10.0.26300  (384.2 ms)
+        hostname: ADIFAGBADE
+        user: tomiw
+        os: Windows_NT 10.0.26300 (x64)
+        node: v24.22.1
+        proxySettings: none
+
+[FAIL] Local IP address: Only a self-assigned address (169.254.94.101) - DHCP failed  (0.1 ms)
+        ip: null
+        adapter: 
+        apipaAddresses: ["169.254.94.101"]
+        apipa: true
+        --- raw output ---
+        $ ipconfig /all
+        
+        Windows IP Configuration
+        
+           Host Name . . . . . . . . . . . . : ADIFAGBADE
+           Primary Dns Suffix  . . . . . . . : 
+           Node Type . . . . . . . . . . . . : Hybrid
+           IP Routing Enabled. . . . . . . . : No
+           WINS Proxy Enabled. . . . . . . . : No
+        
+        Ethernet adapter Ethernet:
+        
+           Media State . . . . . . . . . . . : Media disconnected
+           Connection-specific DNS Suffix  . : 
+           Description . . . . . . . . . . . : Intel(R) Ethernet Connection I218-LM
+           Physical Address. . . . . . . . . : 20-47-47-28-02-D7
+           DHCP Enabled. . . . . . . . . . . : Yes
+           Autoconfiguration Enabled . . . . : Yes
+        
+        Wireless LAN adapter Local Area Connection* 1:
+        
+           Media State . . . . . . . . . . . : Media disconnected
+           Connection-specific DNS Suffix  . : 
+           Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter
+           Physical Address. . . . . . . . . : 10-4A-7D-C4-72-01
+           DHCP Enabled. . . . . . . . . . . : Yes
+           Autoconfiguration Enabled . . . . : Yes
+        
+        Wireless LAN adapter Wi-Fi:
+        
+           Connection-specific DNS Suffix  . : 
+           Description . . . . . . . . . . . : Intel(R) Dual Band Wireless-AC 7260
+           Physical Address. . . . . . . . . : 10-4A-7D-C4-72-00
+           DHCP Enabled. . . . . . . . . . . : Yes
+           Autoconfiguration Enabled . . . . : Yes
+           Link-local IPv6 Address . . . . . : fe80::2073:435e:3c6c:818e%9(Preferred) 
+           IPv4 Address. . . . . . . . . . . : 10.19.1.160(Duplicate) 
+           Subnet Mask . . . . . . . . . . . : 255.255.248.0
+           Lease Obtained. . . . . . . . . . : Wednesday, November 11, 2026 2:43:07 PM
+           Lease Expires . . . . . . . . . . : Thursday, November 12, 2026 2:53:10 PM
+           Autoconfiguration IPv4 Address. . : 169.254.94.101(Preferred) 
+           Subnet Mask . . . . . . . . . . . : 255.255.0.0
+           Default Gateway . . . . . . . . . : 10.19.0.1
+           DHCP Server . . . . . . . . . . . : 10.19.0.1
+           DHCPv6 IAID . . . . . . . . . . . : 68176509
+           DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-32-73-ED-63-20-47-47-28-02-D7
+           DNS Servers . . . . . . . . . . . : 10.105.40.254
+                                               10.105.40.2
+                                               8.8.8.8
+           NetBIOS over Tcpip. . . . . . . . : Enabled
+        
+        Ethernet adapter Bluetooth Network Connection:
+        
+           Media State . . . . . . . . . . . : Media disconnected
+           Connection-specific DNS Suffix  . : 
+           Description . . . . . . . . . . . : Bluetooth Device (Personal Area Network)
+           Physical Address. . . . . . . . . : 10-4A-7D-C4-72-04
+           DHCP Enabled. . . . . . . . . . . : Yes
+           Autoconfiguration Enabled . . . . : Yes
+        
+        
+        $ route print -4 0.0.0.0
+        ===========================================================================
+        Interface List
+         16...20 47 47 28 02 d7 ......Intel(R) Ethernet Connection I218-LM
+         10...10 4a 7d c4 72 01 ......Microsoft Wi-Fi Direct Virtual Adapter
+          9...10 4a 7d c4 72 00 ......Intel(R) Dual Band Wireless-AC 7260
+         13...10 4a 7d c4 72 04 ......Bluetooth Device (Personal Area Network)
+          1...........................Software Loopback Interface 1
+        ===========================================================================
+        
+        IPv4 Route Table
+        ===========================================================================
+        Active Routes:
+        Network Destination        Netmask          Gateway       Interface  Metric
+                  0.0.0.0          0.0.0.0        10.19.0.1                9     45
+        ===========================================================================
+        Persistent Routes:
+          None
+
+[FAIL] Default gateway: No default gateway configured - this PC has no route to other networks  (0 ms)
+        gateway: null
+        defaultRoutes: 0
+
+[PASS] Wi-Fi signal: 'INTECU', signal 43%  (9864 ms)
+        ssid: INTECU
+        signalPct: 43
+        --- raw output ---
+        
+        There is 1 interface on the system: 
+        
+            Name                   : Wi-Fi
+            Description            : Intel(R) Dual Band Wireless-AC 7260
+            GUID                   : 5e8f254e-e6db-451f-bd2e-ad96f6ba4356
+            Physical address       : 10:4a:7d:c4:72:00
+            Interface type         : Primary
+            State                  : connected
+            SSID                   : INTECU
+            AP BSSID               : 00:10:30:e0:43:df
+            Band                   : 2.4 GHz
+            Channel                : 1
+            Network type           : Infrastructure
+            Radio type             : 802.11n
+            Authentication         : Unknown
+            Cipher                 : None
+            Connection mode        : Auto Connect
+            Receive rate (Mbps)    : 144.4
+            Transmit rate (Mbps)   : 144.4
+            Signal                 : 43% 
+            Profile                : INTECU 
+            QoS MSCS Configured         : 0
+            QoS Map Configured          : 0
+            QoS Map Allowed by Policy   : 0
+
+[SKIP] Gateway reachable: Skipped - fix the local connection first  (0 ms)
+
+[SKIP] DNS resolution: Skipped - fix the local connection first  (0 ms)
+
+[SKIP] Approved destination: Skipped - fix the local connection first  (0 ms)
+
+[SKIP] Web response: Skipped - fix the local connection first  (0 ms)
+
+[SKIP] Speed and stability: Skipped - fix the local connection first  (0 ms)

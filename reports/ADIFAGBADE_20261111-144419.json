@@ -1,0 +1,136 @@
+{
+  "tool": "netdiag",
+  "version": "1.0.0",
+  "generatedAt": "2026-11-11T13:44:19.399Z",
+  "configSource": "built-in defaults",
+  "config": {
+    "destinationHost": "example.com",
+    "destinationPort": 443,
+    "dnsTestHostname": "",
+    "publicResolvers": [
+      "1.1.1.1",
+      "8.8.8.8"
+    ],
+    "pingCount": 10,
+    "gatewayPingCount": 4,
+    "lossWarnPct": 5,
+    "lossFailPct": 50,
+    "latencyWarnMs": 150,
+    "gatewayLatencyWarnMs": 30,
+    "tcpTimeout": 4,
+    "dnsTimeout": 3,
+    "httpProbe": true,
+    "traceOnFailure": true,
+    "traceMaxHops": 15,
+    "reportDir": "reports"
+  },
+  "diagnosis": {
+    "verdict": "No network address (DHCP failure)",
+    "severity": "fail",
+    "explanation": "This computer is connected but the network never gave it an address, so it cannot talk to anything.",
+    "nextAction": "Reconnect the network cable or Wi-Fi, wait a minute and run this check again. If it still fails, send the report to IT and mention a 169.254 address.",
+    "technical": "Local IP address: Only a self-assigned address (169.254.94.101) - DHCP failed; Default gateway: No default gateway configured - this PC has no route to other networks"
+  },
+  "checks": [
+    {
+      "id": "system",
+      "title": "System",
+      "status": "info",
+      "summary": "ADIFAGBADE - Windows_NT 10.0.26300",
+      "details": {
+        "hostname": "ADIFAGBADE",
+        "user": "tomiw",
+        "os": "Windows_NT 10.0.26300 (x64)",
+        "node": "v24.22.1",
+        "proxySettings": "none"
+      },
+      "raw": "",
+      "durationMs": 384.2
+    },
+    {
+      "id": "local_ip",
+      "title": "Local IP address",
+      "status": "fail",
+      "summary": "Only a self-assigned address (169.254.94.101) - DHCP failed",
+      "details": {
+        "ip": null,
+        "adapter": "",
+        "apipaAddresses": [
+          "169.254.94.101"
+        ],
+        "apipa": true
+      },
+      "raw": "$ ipconfig /all\n\r\nWindows IP Configuration\r\n\r\n   Host Name . . . . . . . . . . . . : ADIFAGBADE\r\n   Primary Dns Suffix  . . . . . . . : \r\n   Node Type . . . . . . . . . . . . : Hybrid\r\n   IP Routing Enabled. . . . . . . . : No\r\n   WINS Proxy Enabled. . . . . . . . : No\r\n\r\nEthernet adapter Ethernet:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n   Description . . . . . . . . . . . : Intel(R) Ethernet Connection I218-LM\r\n   Physical Address. . . . . . . . . : 20-47-47-28-02-D7\r\n   DHCP Enabled. . . . . . . . . . . : Yes\r\n   Autoconfiguration Enabled . . . . : Yes\r\n\r\nWireless LAN adapter Local Area Connection* 1:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n   Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter\r\n   Physical Address. . . . . . . . . : 10-4A-7D-C4-72-01\r\n   DHCP Enabled. . . . . . . . . . . : Yes\r\n   Autoconfiguration Enabled . . . . : Yes\r\n\r\nWireless LAN adapter Wi-Fi:\r\n\r\n   Connection-specific DNS Suffix  . : \r\n   Description . . . . . . . . . . . : Intel(R) Dual Band Wireless-AC 7260\r\n   Physical Address. . . . . . . . . : 10-4A-7D-C4-72-00\r\n   DHCP Enabled. . . . . . . . . . . : Yes\r\n   Autoconfiguration Enabled . . . . : Yes\r\n   Link-local IPv6 Address . . . . . : fe80::2073:435e:3c6c:818e%9(Preferred) \r\n   IPv4 Address. . . . . . . . . . . : 10.19.1.160(Duplicate) \r\n   Subnet Mask . . . . . . . . . . . : 255.255.248.0\r\n   Lease Obtained. . . . . . . . . . : Wednesday, November 11, 2026 2:43:07 PM\r\n   Lease Expires . . . . . . . . . . : Thursday, November 12, 2026 2:53:10 PM\r\n   Autoconfiguration IPv4 Address. . : 169.254.94.101(Preferred) \r\n   Subnet Mask . . . . . . . . . . . : 255.255.0.0\r\n   Default Gateway . . . . . . . . . : 10.19.0.1\r\n   DHCP Server . . . . . . . . . . . : 10.19.0.1\r\n   DHCPv6 IAID . . . . . . . . . . . : 68176509\r\n   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-32-73-ED-63-20-47-47-28-02-D7\r\n   DNS Servers . . . . . . . . . . . : 10.105.40.254\r\n                                       10.105.40.2\r\n                                       8.8.8.8\r\n   NetBIOS over Tcpip. . . . . . . . : Enabled\r\n\r\nEthernet adapter Bluetooth Network Connection:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n   Description . . . . . . . . . . . : Bluetooth Device (Personal Area Network)\r\n   Physical Address. . . . . . . . . : 10-4A-7D-C4-72-04\r\n   DHCP Enabled. . . . . . . . . . . : Yes\r\n   Autoconfiguration Enabled . . . . : Yes\r\n\n\n$ route print -4 0.0.0.0\n===========================================================================\r\nInterface List\r\n 16...20 47 47 28 02 d7 ......Intel(R) Ethernet Connection I218-LM\r\n 10...10 4a 7d c4 72 01 ......Microsoft Wi-Fi Direct Virtual Adapter\r\n  9...10 4a 7d c4 72 00 ......Intel(R) Dual Band Wireless-AC 7260\r\n 13...10 4a 7d c4 72 04 ......Bluetooth Device (Personal Area Network)\r\n  1...........................Software Loopback Interface 1\r\n===========================================================================\r\n\r\nIPv4 Route Table\r\n===========================================================================\r\nActive Routes:\r\nNetwork Destination        Netmask          Gateway       Interface  Metric\r\n          0.0.0.0          0.0.0.0        10.19.0.1                9     45\r\n===========================================================================\r\nPersistent Routes:\r\n  None\r\n",
+      "durationMs": 0.1
+    },
+    {
+      "id": "gateway",
+      "title": "Default gateway",
+      "status": "fail",
+      "summary": "No default gateway configured - this PC has no route to other networks",
+      "details": {
+        "gateway": null,
+        "defaultRoutes": 0
+      },
+      "raw": "",
+      "durationMs": 0
+    },
+    {
+      "id": "wifi",
+      "title": "Wi-Fi signal",
+      "status": "pass",
+      "summary": "'INTECU', signal 43%",
+      "details": {
+        "ssid": "INTECU",
+        "signalPct": 43
+      },
+      "raw": "\r\nThere is 1 interface on the system: \r\n\r\n    Name                   : Wi-Fi\r\n    Description            : Intel(R) Dual Band Wireless-AC 7260\r\n    GUID                   : 5e8f254e-e6db-451f-bd2e-ad96f6ba4356\r\n    Physical address       : 10:4a:7d:c4:72:00\r\n    Interface type         : Primary\r\n    State                  : connected\r\n    SSID                   : INTECU\r\n    AP BSSID               : 00:10:30:e0:43:df\r\n    Band                   : 2.4 GHz\r\n    Channel                : 1\r\n    Network type           : Infrastructure\r\n    Radio type             : 802.11n\r\n    Authentication         : Unknown\r\n    Cipher                 : None\r\n    Connection mode        : Auto Connect\r\n    Receive rate (Mbps)    : 144.4\r\n    Transmit rate (Mbps)   : 144.4\r\n    Signal                 : 43% \r\n    Profile                : INTECU \r\n    QoS MSCS Configured         : 0\r\n    QoS Map Configured          : 0\r\n    QoS Map Allowed by Policy   : 0\r\n\r\n",
+      "durationMs": 9864
+    },
+    {
+      "id": "gateway_ping",
+      "title": "Gateway reachable",
+      "status": "skip",
+      "summary": "Skipped - fix the local connection first",
+      "details": {},
+      "raw": "",
+      "durationMs": 0
+    },
+    {
+      "id": "dns",
+      "title": "DNS resolution",
+      "status": "skip",
+      "summary": "Skipped - fix the local connection first",
+      "details": {},
+      "raw": "",
+      "durationMs": 0
+    },
+    {
+      "id": "destination",
+      "title": "Approved destination",
+      "status": "skip",
+      "summary": "Skipped - fix the local connection first",
+      "details": {},
+      "raw": "",
+      "durationMs": 0
+    },
+    {
+      "id": "http",
+      "title": "Web response",
+      "status": "skip",
+      "summary": "Skipped - fix the local connection first",
+      "details": {},
+      "raw": "",
+      "durationMs": 0
+    },
+    {
+      "id": "quality",
+      "title": "Speed and stability",
+      "status": "skip",
+      "summary": "Skipped - fix the local connection first",
+      "details": {},
+      "raw": "",
+      "durationMs": 0
+    }
+  ]
+}

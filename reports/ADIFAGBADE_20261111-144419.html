@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Network report - ADIFAGBADE</title><style>
+:root{color-scheme:light dark;--bg:#f4f6f8;--card:#ffffff;--text:#1b2127;--muted:#5b6672;--border:#dde2e8;--accent:#1d4ed8;--accent-text:#ffffff;
+--pass:#13703c;--pass-bg:#e5f5ec;--warn:#8a5300;--warn-bg:#fff3d6;--fail:#a82217;--fail-bg:#fde8e6;--info:#0b5f94;--info-bg:#e4f1f9;--skip:#5b6672;--skip-bg:#edf0f3}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1217;--card:#161b22;--text:#e7ebf0;--muted:#9aa5b1;--border:#29313b;--accent:#5b8def;--accent-text:#0b1220;
+--pass:#4ade80;--pass-bg:#0f2a1a;--warn:#fbbf24;--warn-bg:#2c2208;--fail:#fb8f86;--fail-bg:#33150f;--info:#7ab8ee;--info-bg:#0f2234;--skip:#9aa5b1;--skip-bg:#1d232b}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:28px 18px 56px}
+header h1{margin:0;font-size:1.6rem;letter-spacing:-.01em}
+h3{margin:26px 0 10px;font-size:1.05rem}
+.sub{margin:.25rem 0 0;color:var(--muted)}
+.hero{margin:22px 0;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:14px;text-align:center}
+.hero p{margin:0 0 14px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn:focus-visible,summary:focus-visible,input:focus-visible,footer button:focus-visible,.verdict:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.primary{background:var(--accent);color:var(--accent-text);border-color:var(--accent);padding:14px 28px;font-size:1.1rem}
+.btn[disabled]{opacity:.7;cursor:progress}
+.spinner{width:16px;height:16px;border:3px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spinner{animation-duration:2.6s}}
+.status{min-height:1.5em;margin:6px 2px 14px;color:var(--muted);font-size:.95rem}
+.verdict{margin:0 0 18px;padding:18px 20px;border-radius:14px;border:1px solid var(--border);border-left-width:8px;background:var(--card)}
+.verdict h2{margin:0 0 6px;font-size:1.3rem}
+.verdict p{margin:.35rem 0}
+.verdict.pass{background:var(--pass-bg);border-color:var(--pass)}
+.verdict.warn{background:var(--warn-bg);border-color:var(--warn)}
+.verdict.fail{background:var(--fail-bg);border-color:var(--fail)}
+.verdict .saved{color:var(--muted);font-size:.85rem;word-break:break-all}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.row{display:flex;gap:12px;align-items:flex-start}
+.badge{flex:none;min-width:88px;text-align:center;font-size:.78rem;font-weight:700;letter-spacing:.02em;padding:4px 8px;border-radius:999px;margin-top:2px}
+.badge.pass{color:var(--pass);background:var(--pass-bg)}
+.badge.warn{color:var(--warn);background:var(--warn-bg)}
+.badge.fail{color:var(--fail);background:var(--fail-bg)}
+.badge.info{color:var(--info);background:var(--info-bg)}
+.badge.skip,.badge.wait{color:var(--skip);background:var(--skip-bg)}
+.title{font-weight:650}
+.summary{color:var(--muted);word-break:break-word}
+details.tech{margin-top:8px}
+details.tech summary{cursor:pointer;color:var(--accent);font-size:.9rem}
+pre{margin:8px 0 0;padding:10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:auto;font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;white-space:pre-wrap;word-break:break-word;max-height:360px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.actions label{display:flex;gap:8px;align-items:center;color:var(--muted);cursor:pointer}
+footer{margin-top:28px;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer button{background:none;border:0;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline}
+[hidden]{display:none!important}
+@media print{body{background:#fff}.actions,.hero,footer{display:none}pre{max-height:none}}
+</style></head>
+<body><div class="wrap">
+<header><h1>Network check report</h1>
+<p class="sub">ADIFAGBADE &middot; user tomiw &middot; Windows_NT 10.0.26300 (x64) &middot; 11/11/2026, 2:44:19 PM</p></header>
+<section class="verdict fail" style="margin-top:20px"><h2>No network address (DHCP failure)</h2><p>This computer is connected but the network never gave it an address, so it cannot talk to anything.</p><p><strong>What to do:</strong> Reconnect the network cable or Wi-Fi, wait a minute and run this check again. If it still fails, send the report to IT and mention a 169.254 address.</p></section>
+<h3>Checks</h3><ol class="checks">
+<li class="card"><div class="row"><span class="badge info">Info</span><div><div class="title">System</div><div class="summary">ADIFAGBADE - Windows_NT 10.0.26300</div></div></div><details class="tech"><summary>Technical details</summary><pre>hostname: ADIFAGBADE
+user: tomiw
+os: Windows_NT 10.0.26300 (x64)
+node: v24.22.1
+proxySettings: none</pre></details></li>
+<li class="card"><div class="row"><span class="badge fail">Problem</span><div><div class="title">Local IP address</div><div class="summary">Only a self-assigned address (169.254.94.101) - DHCP failed</div></div></div><details class="tech"><summary>Technical details</summary><pre>ip: null
+adapter: 
+apipaAddresses: [&quot;169.254.94.101&quot;]
+apipa: true
+
+--- raw output ---
+$ ipconfig /all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : ADIFAGBADE
+   Primary Dns Suffix  . . . . . . . : 
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+
+Ethernet adapter Ethernet:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Intel(R) Ethernet Connection I218-LM
+   Physical Address. . . . . . . . . : 20-47-47-28-02-D7
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+
+Wireless LAN adapter Local Area Connection* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter
+   Physical Address. . . . . . . . . : 10-4A-7D-C4-72-01
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+
+Wireless LAN adapter Wi-Fi:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Intel(R) Dual Band Wireless-AC 7260
+   Physical Address. . . . . . . . . : 10-4A-7D-C4-72-00
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::2073:435e:3c6c:818e%9(Preferred) 
+   IPv4 Address. . . . . . . . . . . : 10.19.1.160(Duplicate) 
+   Subnet Mask . . . . . . . . . . . : 255.255.248.0
+   Lease Obtained. . . . . . . . . . : Wednesday, November 11, 2026 2:43:07 PM
+   Lease Expires . . . . . . . . . . : Thursday, November 12, 2026 2:53:10 PM
+   Autoconfiguration IPv4 Address. . : 169.254.94.101(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.0.0
+   Default Gateway . . . . . . . . . : 10.19.0.1
+   DHCP Server . . . . . . . . . . . : 10.19.0.1
+   DHCPv6 IAID . . . . . . . . . . . : 68176509
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-32-73-ED-63-20-47-47-28-02-D7
+   DNS Servers . . . . . . . . . . . : 10.105.40.254
+                                       10.105.40.2
+                                       8.8.8.8
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Ethernet adapter Bluetooth Network Connection:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Bluetooth Device (Personal Area Network)
+   Physical Address. . . . . . . . . : 10-4A-7D-C4-72-04
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+
+
+$ route print -4 0.0.0.0
+===========================================================================
+Interface List
+ 16...20 47 47 28 02 d7 ......Intel(R) Ethernet Connection I218-LM
+ 10...10 4a 7d c4 72 01 ......Microsoft Wi-Fi Direct Virtual Adapter
+  9...10 4a 7d c4 72 00 ......Intel(R) Dual Band Wireless-AC 7260
+ 13...10 4a 7d c4 72 04 ......Bluetooth Device (Personal Area Network)
+  1...........................Software Loopback Interface 1
+===========================================================================
+
+IPv4 Route Table
+===========================================================================
+Active Routes:
+Network Destination        Netmask          Gateway       Interface  Metric
+          0.0.0.0          0.0.0.0        10.19.0.1                9     45
+===========================================================================
+Persistent Routes:
+  None</pre></details></li>
+<li class="card"><div class="row"><span class="badge fail">Problem</span><div><div class="title">Default gateway</div><div class="summary">No default gateway configured - this PC has no route to other networks</div></div></div><details class="tech"><summary>Technical details</summary><pre>gateway: null
+defaultRoutes: 0</pre></details></li>
+<li class="card"><div class="row"><span class="badge pass">OK</span><div><div class="title">Wi-Fi signal</div><div class="summary">&#39;INTECU&#39;, signal 43%</div></div></div><details class="tech"><summary>Technical details</summary><pre>ssid: INTECU
+signalPct: 43
+
+--- raw output ---
+
+There is 1 interface on the system: 
+
+    Name                   : Wi-Fi
+    Description            : Intel(R) Dual Band Wireless-AC 7260
+    GUID                   : 5e8f254e-e6db-451f-bd2e-ad96f6ba4356
+    Physical address       : 10:4a:7d:c4:72:00
+    Interface type         : Primary
+    State                  : connected
+    SSID                   : INTECU
+    AP BSSID               : 00:10:30:e0:43:df
+    Band                   : 2.4 GHz
+    Channel                : 1
+    Network type           : Infrastructure
+    Radio type             : 802.11n
+    Authentication         : Unknown
+    Cipher                 : None
+    Connection mode        : Auto Connect
+    Receive rate (Mbps)    : 144.4
+    Transmit rate (Mbps)   : 144.4
+    Signal                 : 43% 
+    Profile                : INTECU 
+    QoS MSCS Configured         : 0
+    QoS Map Configured          : 0
+    QoS Map Allowed by Policy   : 0</pre></details></li>
+<li class="card"><div class="row"><span class="badge skip">Skipped</span><div><div class="title">Gateway reachable</div><div class="summary">Skipped - fix the local connection first</div></div></div></li>
+<li class="card"><div class="row"><span class="badge skip">Skipped</span><div><div class="title">DNS resolution</div><div class="summary">Skipped - fix the local connection first</div></div></div></li>
+<li class="card"><div class="row"><span class="badge skip">Skipped</span><div><div class="title">Approved destination</div><div class="summary">Skipped - fix the local connection first</div></div></div></li>
+<li class="card"><div class="row"><span class="badge skip">Skipped</span><div><div class="title">Web response</div><div class="summary">Skipped - fix the local connection first</div></div></div></li>
+<li class="card"><div class="row"><span class="badge skip">Skipped</span><div><div class="title">Speed and stability</div><div class="summary">Skipped - fix the local connection first</div></div></div></li>
+</ol>
+<h3>For IT</h3><pre>Technical : Local IP address: Only a self-assigned address (169.254.94.101) - DHCP failed; Default gateway: No default gateway configured - this PC has no route to other networks
+Target    : example.com:443
+Config    : built-in defaults
+Tool      : netdiag 1.0.0 (Node v24.22.1)</pre>
+</div></body></html>
